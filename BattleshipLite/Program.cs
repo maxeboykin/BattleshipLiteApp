@@ -19,16 +19,27 @@ namespace BattleshipLite
             do
             {
                 // Display grid from activeplayer  on where they fired 
+                DisplayShotGrid(activePlayer);
                 // ask activeplayer for a shot
                 // determine if it is a valid shot 
                 // determine shot results 
                 // determine if the game is over
                 // if over, set player1 as the winner
                 // else, swap positions (activePlayer to opponent) 
-                
+
             } while (winner == null);
             
             Console.ReadLine();
+        }
+
+        //using it here since its displaying to console 
+        private static void DisplayShotGrid(PlayerInfoModel activePlayer)
+        {
+            foreach (var gridSpot in activePlayer.ShotGrid)
+            {
+                if(gridSpot.Status == GridSpotStatus.Empty)
+                Console.Write($" {gridSpot.SpotLetter}{gridSpot.SpotNumber}");
+            }
         }
 
         private static void WelcomeMessage()
