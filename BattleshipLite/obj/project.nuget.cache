@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1j+NhcYtkTrEqAQQ4ctZSEKwaBa0Z08mWA8nzsIJIE54HHZzzuAVO9qrf1uJWp374RYwKsmk7BKDqs36/RgVmA==",
+  "dgSpecHash": "EJPmL0No7MYeFU3JjKvYJtSqW7aCASn98hMBcqPS1R4rh5OMnIfF6IwV+G9pfUFZKnIGiyhe4cuZ2cLJrQn7ig==",
   "success": true,
-  "projectFilePath": "/home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLite/BattleshipLite.csproj",
+  "projectFilePath": "/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLite/BattleshipLite.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

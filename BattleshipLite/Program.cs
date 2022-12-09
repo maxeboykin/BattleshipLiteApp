@@ -35,10 +35,31 @@ namespace BattleshipLite
         //using it here since its displaying to console 
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)
         {
+            string currentRow = activePlayer.ShotGrid[0].SpotLetter;
             foreach (var gridSpot in activePlayer.ShotGrid)
             {
-                if(gridSpot.Status == GridSpotStatus.Empty)
-                Console.Write($" {gridSpot.SpotLetter}{gridSpot.SpotNumber}");
+                if (gridSpot.SpotLetter != currentRow)
+                {
+                    Console.WriteLine();
+                    currentRow = gridSpot.SpotLetter;
+                }
+
+                if (gridSpot.Status == GridSpotStatus.Empty)
+                {
+                    Console.Write($" {gridSpot.SpotLetter}{gridSpot.SpotNumber}");
+                }
+                else if (gridSpot.Status == GridSpotStatus.Hit)
+                {
+                    Console.Write(" X ");
+                }
+                else if (gridSpot.Status == GridSpotStatus.Miss)
+                {
+                    Console.Write(" O ");
+                }
+                else
+                {
+                    Console.Write(" ? ");
+                }
             }
         }
 
