@@ -9,11 +9,9 @@ namespace BattleshipLite
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             WelcomeMessage();
-            
             PlayerInfoModel activePlayer = CreatePlayer("Player 1");
             PlayerInfoModel opponent = CreatePlayer("Player 2");
             PlayerInfoModel winner = null;
@@ -35,7 +33,6 @@ namespace BattleshipLite
                     winner = activePlayer;
                 }
                 
-
             } while (winner == null);
 
             IdentifyWinner(winner);
@@ -48,7 +45,6 @@ namespace BattleshipLite
             Console.WriteLine($"Congratulations {winner.UsersName}, you won!");
             Console.WriteLine($"{winner.UsersName} took {GameLogic.GetShotCount(winner)} shots to win.");
         }
-
         private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
         {
             bool isValidShot = false;
@@ -74,15 +70,12 @@ namespace BattleshipLite
             GameLogic.MarkShotResult(activePlayer, row, column, isAHit);
 
         }
-
         private static string AskForShot()
         {
             Console.WriteLine("Please enter your shot selection: ");
-            string output = Console.ReadLine();
+            string? output = Console.ReadLine();
             return output;
         }
-
-        //using it here since its displaying to console 
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)
         {
             string currentRow = activePlayer.ShotGrid[0].SpotLetter;
@@ -112,14 +105,12 @@ namespace BattleshipLite
                 }
             }
         }
-
         private static void WelcomeMessage()
         {
             Console.WriteLine("Welcome to Battleship Lite");
             Console.WriteLine("created by Tim Corey");
             Console.WriteLine();
         }
-
         private static PlayerInfoModel CreatePlayer(string playerTitle)
         {
             PlayerInfoModel output = new PlayerInfoModel();
@@ -139,7 +130,6 @@ namespace BattleshipLite
             
             return output;
         }
-
         private static void PlaceShips(PlayerInfoModel model)
         {
             do
@@ -162,7 +152,6 @@ namespace BattleshipLite
 
             } while (model.ShipLocations.Count < 5);
         }
-
         private static string AskForUsersName()
         {
             Console.Write("What is your name: ");
