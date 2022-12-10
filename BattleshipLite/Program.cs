@@ -78,7 +78,8 @@ namespace BattleshipLite
         }
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)
         {
-            string currentRow = activePlayer.ShotGrid[0].SpotLetter;
+            // not sure why we need currentRow
+            string? currentRow = activePlayer.ShotGrid[0].SpotLetter;
             foreach (var gridSpot in activePlayer.ShotGrid)
             {
                 if (gridSpot.SpotLetter != currentRow)

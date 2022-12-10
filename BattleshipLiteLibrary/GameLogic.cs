@@ -1,3 +1,4 @@
+using System.Diagnostics.SymbolStore;
 using BattleshipLiteLibrary.Models;
 
 namespace BattleshipLiteLibrary;
@@ -66,7 +67,20 @@ public static class GameLogic
 
     public static (string row, int column) SplitShotIntoRowAndColumn(string shot)
     {
-        throw new NotImplementedException();
+        string shotLetter = shot[0];
+        int shotNumber = int.Parse(shot[1].ToString());
+        while (!(shotLetter.ToLower()).Contains(shotLetter))
+        {
+            Console.WriteLine("Please enter a valid letter");
+            shotLetter = Console.ReadLine();
+        }
+        while (shotNumber < 1 || shotNumber > 5)
+        {
+            Console.WriteLine("Please enter a valid number");
+            shotNumber = int.Parse(Console.ReadLine());
+        }
+
+        return (shotLetter, shotNumber);
     }
 
     public static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
