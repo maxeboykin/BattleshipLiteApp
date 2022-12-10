@@ -8,25 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/Users/maxboykin/.nuget/packages/": {}
+    "/home/maxboykin/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/BattleshipLiteLibrary.csproj",
+      "projectUniqueName": "/home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/BattleshipLiteLibrary.csproj",
       "projectName": "BattleshipLiteLibrary",
-      "projectPath": "/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/BattleshipLiteLibrary.csproj",
-      "packagesPath": "/Users/maxboykin/.nuget/packages/",
-      "outputPath": "/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/",
+      "projectPath": "/home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/BattleshipLiteLibrary.csproj",
+      "packagesPath": "/home/maxboykin/.nuget/packages/",
+      "outputPath": "/home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/maxboykin/.nuget/NuGet/NuGet.Config"
+        "/home/maxboykin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -50,8 +49,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.110/RuntimeIdentifierGraph.json"
       }
     }
   }

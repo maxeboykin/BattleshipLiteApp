@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Text.Json.Serialization.Metadata;
 using BattleshipLiteLibrary;
 using BattleshipLiteLibrary.Models;
@@ -12,24 +14,72 @@ namespace BattleshipLite
         {
             WelcomeMessage();
             
-            PlayerInfoModel player1 = CreatePlayer("Player 1");
-            PlayerInfoModel player2 = CreatePlayer("Player 2");
+            PlayerInfoModel activePlayer = CreatePlayer("Player 1");
+            PlayerInfoModel opponent = CreatePlayer("Player 2");
             PlayerInfoModel winner = null;
 
             do
             {
-                // Display grid from activeplayer  on where they fired 
                 DisplayShotGrid(activePlayer);
-                // ask activeplayer for a shot
-                // determine if it is a valid shot 
-                // determine shot results 
-                // determine if the game is over
-                // if over, set player1 as the winner
-                // else, swap positions (activePlayer to opponent) 
+                
+                RecordPlayerShot(activePlayer, opponent);
+
+                bool doesGameContinue = GameLogic.PlayerStillActive(opponent);
+                
+                if (doesGameContinue == true)
+                {
+                    (activePlayer, opponent) = (opponent, activePlayer);
+                }
+                else
+                {
+                    winner = activePlayer;
+                }
+                
 
             } while (winner == null);
+
+            IdentifyWinner(winner);
             
             Console.ReadLine();
+        }
+
+        private static void IdentifyWinner(PlayerInfoModel winner)
+        {
+            Console.WriteLine($"Congratulations {winner.UsersName}, you won!");
+            Console.WriteLine($"{winner.UsersName} took {GameLogic.GetShotCount(winner)} shots to win.");
+        }
+
+        private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
+        {
+            bool isValidShot = false;
+            string row = "";
+            int column = 0;
+
+            do
+            {
+                string shot = AskForShot();
+                (row, column) = GameLogic.SplitShotIntoRowAndColumn(shot);
+                isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
+                if (isValidShot == false)
+                {
+                    Console.WriteLine("That shot was invalid. Please try again.");
+                }
+
+            } while (!isValidShot);
+
+            // Determine the shot results 
+            bool isAHit = GameLogic.IdentifyShotResult(opponent, row, column);
+           
+            // record shot results  
+            GameLogic.MarkShotResult(activePlayer, row, column, isAHit);
+
+        }
+
+        private static string AskForShot()
+        {
+            Console.WriteLine("Please enter your shot selection: ");
+            string output = Console.ReadLine();
+            return output;
         }
 
         //using it here since its displaying to console 
