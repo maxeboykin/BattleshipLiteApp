@@ -52,12 +52,58 @@ public static class GameLogic
 
     public static bool PlaceShip(PlayerInfoModel model, string? location)
     {
-        throw new NotImplementedException();
+           if (location == null)
+            {
+                return false;
+            }
+    
+            if (location.Length != 2)
+            {
+                return false;
+            }
+    
+            string letter = location.Substring(0, 1);
+            string numberText = location.Substring(1, 1);
+    
+            if (int.TryParse(numberText, out int number) == false)
+            {
+                return false;
+            }
+            if(number < 1 || number > 5)
+            {
+                return false;
+            }
+            if(letter.ToLower() != "a" && letter.ToLower() != "b" && letter.ToLower() != "c" && letter.ToLower() != "d" && letter.ToLower() != "e")
+            {
+                return false;
+            }
+            if(model.ShipLocations.Any(x => x.SpotLetter == letter && x.SpotNumber == number))
+            {
+                return false;
+            }
+
+            GridSpotModel shipSpot = new GridSpotModel
+            {
+                SpotLetter = letter,
+                SpotNumber = number,
+                Status = GridSpotStatus.Ship
+            };
+            model.ShipLocations.Add(shipSpot);
+            return true;
     }
 
-    public static bool PlayerStillActive(object opponent)
+    public static bool PlayerStillActive(PlayerInfoModel opponent)
     {
-        throw new NotImplementedException();
+        int? count = 0;
+        foreach (var ship in opponent.ShipLocations)
+        {
+            if (ship.Status != GridSpotStatus.Sunk)
+            {
+                count++;
+            }
+        }
+
+        return count != 5;
     }
 
     public static int GetShotCount(PlayerInfoModel winner)
@@ -112,8 +158,8 @@ public static class GameLogic
                     ship.Status = GridSpotStatus.Hit;
                 }
             }
-
-        return isHit;
+            return isHit;
+        }
     }
 
     public static void MarkShotResult(PlayerInfoModel activePlayer, string row, int column, bool isAHit)
@@ -133,6 +179,5 @@ public static class GameLogic
             }
         }
     }
-        }
-    }
+    
 }
