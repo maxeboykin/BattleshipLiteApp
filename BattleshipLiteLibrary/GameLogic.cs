@@ -1,3 +1,4 @@
+using System.Data;
 using System.Diagnostics.SymbolStore;
 using BattleshipLiteLibrary.Models;
 
@@ -52,63 +53,85 @@ public static class GameLogic
 
     public static bool PlaceShip(PlayerInfoModel model, string? location)
     {
-           if (location == null)
-            {
-                return false;
-            }
-    
-            if (location.Length != 2)
-            {
-                return false;
-            }
-    
-            string letter = location.Substring(0, 1);
-            string numberText = location.Substring(1, 1);
-    
-            if (int.TryParse(numberText, out int number) == false)
-            {
-                return false;
-            }
-            if(number < 1 || number > 5)
-            {
-                return false;
-            }
-            if(letter.ToLower() != "a" && letter.ToLower() != "b" && letter.ToLower() != "c" && letter.ToLower() != "d" && letter.ToLower() != "e")
-            {
-                return false;
-            }
-            if(model.ShipLocations.Any(x => x.SpotLetter == letter && x.SpotNumber == number))
-            {
-                return false;
-            }
+        bool output = false;
+        (string row, int column) = SplitShotIntoRowAndColumn(location);
 
-            GridSpotModel shipSpot = new GridSpotModel
+        bool isValidLocation = ValidateGridLocation(model, row, column);
+        bool isShipAlreadyPlaced = ValidateShipLocation(model, row, column);
+
+            if(isValidLocation && !isShipAlreadyPlaced)
             {
-                SpotLetter = letter,
-                SpotNumber = number,
-                Status = GridSpotStatus.Ship
-            };
-            model.ShipLocations.Add(shipSpot);
-            return true;
+                GridSpotModel shipSpot = new GridSpotModel
+                {
+                    SpotLetter = row.ToUpper(),
+                    SpotNumber = column,
+                    Status = GridSpotStatus.Ship
+                };
+                model.ShipLocations.Add(shipSpot);
+                output = true;
+            }
+            return output;
     }
 
-    public static bool PlayerStillActive(PlayerInfoModel opponent)
+    private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
     {
-        int? count = 0;
-        foreach (var ship in opponent.ShipLocations)
+        bool isValidShipLocation = true;
+        foreach (var ship in model.ShipLocations)
+        {
+            // doesnt matter if its ship or sunk (cant be sunk anyway since that happens when game starts)
+            // if any spot is in shiplocation list then you know a ship has been there and hence return false
+            if(ship.SpotLetter == row.ToUpper() && ship.SpotNumber == column)
+            {
+                isValidShipLocation = false;
+            }
+        }
+        return isValidShipLocation;
+    }
+
+    private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
+    {
+        bool isValid = true;
+        
+        if (row.ToLower() != "a" && row.ToLower() != "b" && row.ToLower() != "c" && row.ToLower() != "d" &&
+            row.ToLower() != "e")
+        {
+            isValid = false;
+        }
+        if(column < 1 || column > 5)
+        {
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    public static bool PlayerStillActive(PlayerInfoModel player)
+    {
+        bool isActive = false;
+        foreach (var ship in player.ShipLocations)
         {
             if (ship.Status != GridSpotStatus.Sunk)
             {
-                count++;
+                isActive = true;
             }
         }
 
-        return count != 5;
+        return isActive;
     }
 
-    public static int GetShotCount(PlayerInfoModel winner)
+    public static int GetShotCount(PlayerInfoModel player)
     {
-        throw new NotImplementedException();
+        int shotCount = 0;
+
+        foreach (var shot in player.ShotGrid)
+        {
+            if (shot.Status != GridSpotStatus.Empty)
+            {
+                shotCount += 1;
+            }
+        }
+
+        return shotCount;
     }
 
     public static (string row, int column) SplitShotIntoRowAndColumn(string shot)
