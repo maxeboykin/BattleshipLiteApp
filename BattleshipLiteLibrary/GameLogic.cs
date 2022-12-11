@@ -85,16 +85,54 @@ public static class GameLogic
 
     public static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
     {
-        throw new NotImplementedException();
+        bool isValid = true;
+        foreach (var shot in activePlayer.ShotGrid)
+        {
+            if (shot.SpotLetter == row && shot.SpotNumber == column)
+            {
+                if (shot.Status != GridSpotStatus.Empty)
+                {
+                    isValid = false;
+                }
+            }
+        }
+
+        return isValid;
     }
 
     public static bool IdentifyShotResult(PlayerInfoModel opponent, string row, int column)
     {
-        throw new NotImplementedException();
+        bool isHit = false;
+        foreach (var ship in opponent.ShipLocations)
+        {
+            {
+                if (ship.SpotLetter == row && ship.SpotNumber == column)
+                {
+                    isHit = true;
+                    ship.Status = GridSpotStatus.Hit;
+                }
+            }
+
+        return isHit;
     }
 
     public static void MarkShotResult(PlayerInfoModel activePlayer, string row, int column, bool isAHit)
     {
-        throw new NotImplementedException();
+        foreach (var shot in activePlayer.ShotGrid)
+        {
+            if (shot.SpotLetter == row && shot.SpotNumber == column)
+            {
+                if (isAHit)
+                {
+                    shot.Status = GridSpotStatus.Hit;
+                }
+                else
+                {
+                    shot.Status = GridSpotStatus.Miss;
+                }
+            }
+        }
+    }
+        }
     }
 }
