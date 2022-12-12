@@ -174,16 +174,15 @@ public static class GameLogic
                 if (ship.SpotLetter == row && ship.SpotNumber == column)
                 {
                     isHit = true;
-                    ship.Status = GridSpotStatus.Hit;
                 }
             }
-            return isHit;
         }
+        return isHit;
     }
 
-    public static void MarkShotResult(PlayerInfoModel activePlayer, string row, int column, bool isAHit)
+    public static void MarkShotResult(PlayerInfoModel player, string row, int column, bool isAHit)
     {
-        foreach (var shot in activePlayer.ShotGrid)
+        foreach (var shot in player.ShotGrid)
         {
             if (shot.SpotLetter == row && shot.SpotNumber == column)
             {
