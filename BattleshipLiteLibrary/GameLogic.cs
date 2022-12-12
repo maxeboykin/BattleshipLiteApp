@@ -91,19 +91,15 @@ public static class GameLogic
 
     private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
     {
-        bool isValid = true;
-        
-        if (row.ToLower() != "a" && row.ToLower() != "b" && row.ToLower() != "c" && row.ToLower() != "d" &&
-            row.ToLower() != "e")
+        bool isValidGridLocation = false;
+        foreach (var shot in model.ShotGrid)
         {
-            isValid = false;
+            if(shot.SpotLetter == row.ToUpper() && shot.SpotNumber == column)
+            {
+                isValidGridLocation = true;
+            }
         }
-        if(column < 1 || column > 5)
-        {
-            isValid = false;
-        }
-
-        return isValid;
+        return isValidGridLocation;
     }
 
     public static bool PlayerStillActive(PlayerInfoModel player)
@@ -137,20 +133,19 @@ public static class GameLogic
 
     public static (string row, int column) SplitShotIntoRowAndColumn(string shot)
     {
-        string shotLetter = shot[0];
-        int shotNumber = int.Parse(shot[1].ToString());
-        while (!(shotLetter.ToLower()).Contains(shotLetter))
-        {
-            Console.WriteLine("Please enter a valid letter");
-            shotLetter = Console.ReadLine();
-        }
-        while (shotNumber < 1 || shotNumber > 5)
-        {
-            Console.WriteLine("Please enter a valid number");
-            shotNumber = int.Parse(Console.ReadLine());
-        }
+        string row = "";
+        int column = 0;
 
-        return (shotLetter, shotNumber);
+        if (shot.Length != 2)
+        {
+            throw new ArgumentException("This was an invalid shot type.", shot);
+        }
+        
+        char[] shotArray = shot.ToArray();
+
+        row = shotArray[0].ToString();
+        column = int.Parse(shotArray[1].ToString());
+        return (row, column);
     }
 
     public static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
