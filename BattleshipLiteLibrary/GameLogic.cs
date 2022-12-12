@@ -150,19 +150,19 @@ public static class GameLogic
 
     public static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
     {
-        bool isValid = true;
+        bool isValidShot = false;
         foreach (var shot in activePlayer.ShotGrid)
         {
             if (shot.SpotLetter == row && shot.SpotNumber == column)
             {
-                if (shot.Status != GridSpotStatus.Empty)
+                if (shot.Status == GridSpotStatus.Empty)
                 {
-                    isValid = false;
+                    isValidShot = true;
                 }
             }
         }
 
-        return isValid;
+        return isValidShot;
     }
 
     public static bool IdentifyShotResult(PlayerInfoModel opponent, string row, int column)
