@@ -51,7 +51,7 @@ public static class GameLogic
         model.ShotGrid.Add(spot);
     }
 
-    public static bool PlaceShip(PlayerInfoModel model, string? location)
+    public static bool PlaceShip(PlayerInfoModel model, string location)
     {
         bool output = false;
         (string row, int column) = SplitShotIntoRowAndColumn(location);
@@ -59,7 +59,7 @@ public static class GameLogic
         bool isValidLocation = ValidateGridLocation(model, row, column);
         bool isShipAlreadyPlaced = ValidateShipLocation(model, row, column);
 
-            if(isValidLocation && !isShipAlreadyPlaced)
+            if(isValidLocation && isShipAlreadyPlaced)
             {
                 GridSpotModel shipSpot = new GridSpotModel
                 {
@@ -140,6 +140,7 @@ public static class GameLogic
         char[] shotArray = shot.ToArray();
         row = shotArray[0].ToString();
         column = int.Parse(shotArray[1].ToString());
+        Console.WriteLine($"{row} and {column}");
         return (row, column);
     }
 

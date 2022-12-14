@@ -157,7 +157,6 @@ namespace BattleshipLite
         {
             Console.Write("What is your name: ");
             string output = Console.ReadLine();
-
             return output;
         }
 

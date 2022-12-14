@@ -10,3 +10,15 @@
 /home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.dll
 /home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/ref/BattleshipLiteLibrary.dll
 /home/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.pdb
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/bin/Debug/net6.0/BattleshipLiteLibrary.deps.json
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/bin/Debug/net6.0/BattleshipLiteLibrary.dll
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/bin/Debug/net6.0/BattleshipLiteLibrary.pdb
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.csproj.AssemblyReference.cache
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.AssemblyInfoInputs.cache
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.AssemblyInfo.cs
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.csproj.CoreCompileInputs.cache
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.dll
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/refint/BattleshipLiteLibrary.dll
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/BattleshipLiteLibrary.pdb
+/Users/maxboykin/RiderProjects/BattleshipLiteApp/BattleshipLiteLibrary/obj/Debug/net6.0/ref/BattleshipLiteLibrary.dll
