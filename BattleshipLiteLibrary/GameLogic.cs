@@ -72,7 +72,7 @@ public static class GameLogic
             }
             return output;
     }
-
+    
     private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
     {
         bool isValidShipLocation = true;
@@ -87,8 +87,7 @@ public static class GameLogic
         }
         return isValidShipLocation;
     }
-    // test push
-
+    
     private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
     {
         bool isValidGridLocation = false;
@@ -179,7 +178,7 @@ public static class GameLogic
     {
         foreach (var shot in player.ShotGrid)
         {
-            if (shot.SpotLetter == row && shot.SpotNumber == column)
+            if (shot.SpotLetter == row.ToUpper() && shot.SpotNumber == column)
             {
                 if (isAHit)
                 {
