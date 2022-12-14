@@ -112,7 +112,6 @@ public static class GameLogic
                 isActive = true;
             }
         }
-
         return isActive;
     }
 
@@ -127,7 +126,6 @@ public static class GameLogic
                 shotCount += 1;
             }
         }
-
         return shotCount;
     }
 
@@ -140,9 +138,7 @@ public static class GameLogic
         {
             throw new ArgumentException("This was an invalid shot type.", shot);
         }
-        
         char[] shotArray = shot.ToArray();
-
         row = shotArray[0].ToString();
         column = int.Parse(shotArray[1].ToString());
         return (row, column);
@@ -161,7 +157,6 @@ public static class GameLogic
                 }
             }
         }
-
         return isValidShot;
     }
 
